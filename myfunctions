@@ -1,0 +1,87 @@
+#This is my function file
+#
+#
+menu(){
+echo "Welcome to cs45 backup utility"
+echo "------------------------------"
+echo "This utility backs up all files in a given directory"
+cat <<END
+                MENU
+-------------------------------------
+        1. Backup
+        2. Compress
+        3. Compress and backup
+        4. Quit menu
+-------------------------------------
+END
+mkdir -p $HOME/.secret/.backup
+BACKUP_DIR="$HOME/.secret/.backup"
+chmod 700 $BACKUP_DIR
+read_input
+}
+
+backup_function(){
+  echo "What is your directory to backup? "
+  read directory
+  if [ -d $directory ]
+   then 
+    echo "I am backing up"
+    cp -R $directory BACKUP_DIR
+   else 
+    echo "Not a directory"
+  fi
+}
+
+compress_function(){
+  echo "What is your directory to compress? "
+  read directory
+  if [ -d $directory ]
+   then 
+    echo "I am compressing"
+    tar -czvf compressingDirectories.tar.gz $directory
+   else 
+    echo "Not a directory"
+  fi
+}
+
+compress_and_backup_function(){
+  echo "What is your directory? "
+  read directory
+  if [ -d $directory ]
+   then 
+    echo "I am compressing and backing up."
+    tar -czvf compressingDirectories.tar.gz $directory
+    cp -a compressingDirectories.tar.gz BACKUP_DIR
+   else 
+    echo "Not a directory"
+  fi
+}
+
+function read_input
+{
+ while true
+  do 
+   echo -n "Please select a number to continue: "
+    read choice 
+     case $choice in
+      1|1.|backup|Backup)
+	 backup_function
+	 ;;
+	2|2.|Compress|compress)
+	 compress_function
+	 ;;
+	3|3.|'Compress and backup')
+	 compress_and_backup_function
+	 ;;
+	4|4.|Quit|quit|'Quit menu')
+	    echo "Exit"
+		exit 5
+		;;
+	*)
+	  echo "Not a valid option. Please try again."
+	  ;;
+      esac
+    done
+}
+
+
