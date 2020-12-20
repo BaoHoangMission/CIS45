@@ -1,0 +1,67 @@
+------------------------------------------------
+
+#!/bin/bash
+
+# Scriptname: tellage
+
+# 3. Copy the script and run it on your system and give a detail comment of what each line is doing.
+
+# Date: 11/9/20
+
+# Name: Bao Hoang
+
+# print How old are you and ask for the number of age.
+read -p"How old are you? "
+
+# assign the number to the parameter 'age'
+age=$REPLY
+
+ 
+# if the age less than 0 and larger than 120, print "You are not a real person!""
+if (( age < 0 || age > 120 ))
+
+then
+
+      echo "You are not a real person! "
+
+      exit 1 
+
+fi
+
+ 
+# if the age larger or equal to 0 and less than 13, print  "You still have some of the best years of your life ahead."
+if (( age >= 0 && age < 13 ))
+
+then
+
+      echo "You still have some of the best years of your life ahead."
+# if the age larger then 12 and less than 20, print Important years to learn
+elif (( age > 12 && age < 20 ))
+
+then
+
+      echo "Important years to learn"
+
+# if the age equals or largers than 20 and less than 30, print "Time to find a potential mate!!"
+elif (( age >= 20 && age < 30 ))
+
+then
+
+      echo "Time to find a potential mate!!"
+
+#if the age equals or larger than 30 and less than 40, print "You are probably changing diapers"
+elif (( age >= 30 && age < 40 ))
+
+then
+
+      echo "You are probably changing diapers"
+
+else
+
+      echo "Sorry I asked"
+
+fi
+
+-----------------------------------------
+
+

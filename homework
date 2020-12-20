@@ -1,0 +1,40 @@
+#!/bin/bash
+
+#
+
+echo "1. Finish the lab script"
+echo -n "Please select file type you want to chack: "
+read filetype
+
+if [ -d $filetype ]
+ then echo "$filetype is a dictionary"
+  echo -n "Do you want to see the permissions of $filetype ? "
+  read answer
+   if [ $answer = "yes" ]
+    then 
+     echo "Doing listing of : $filetype"
+     ls -ld $filetype
+   fi
+elif [ -f $filetype ]
+then
+ echo " $filetype is a file "
+ echo -n "Do you want to see the permissions of: $filetype ? "
+ read answer
+  if [ $answer = "yes" ]
+   then
+    echo "Doing listing of: $filetype"
+    ls -lh $filetype
+  fi
+elif [ -L $filetype ]
+ then
+  echo " $filetype is a symbolic link. "
+  echo " Getting the original file file for $filetype! "
+  original_file = $(readlink -f $filetype)
+  echo "Original file for $filetype is : $original_file"
+  size = $( du $original_file )
+  echo "The size of $filestype is : $size bytes. "
+  name = $( ls -l $filetype | awk '{ print $3 }' )
+  echo " The $filetype is owned by : $name "
+else
+ echo "$filetype is not a file or directory"
+fi 

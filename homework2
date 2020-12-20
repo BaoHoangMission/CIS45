@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# Script name: myargs
+
+# 2. Comment every line in the scrip bellow and tell what each line is doing. Look up command in the man pages if you don't understand it. The script name is 'myargs'. Copy the script and run it on your system and give a detail comment of what each line is doing.
+
+# Date: 11/9/20
+
+# Name: Bao Hoang
+
+ 
+
+# Script to test command line arguments
+# if the number of the argument is 0 then it will print "Usage: (name of the file)  arg1 arg2 ... arg"
+if [ $# == 0 ] ; then
+
+   echo "Usage:  $(basename $0)  arg1 arg2 ... argn" \
+
+   #Redirects stdout to stderr
+   1>&2
+
+   #catchall for general errors
+   exit 1
+
+fi
+
+# print The name of this script is (script's name)
+echo "The name of this script is $0 ."
+
+# print The arguments are (All positional parameters)
+echo "The arguments are $* "
+
+# print The first argument is (the first parameter)
+echo "The first argument is $1"
+
+# print The second argument is (the second parameter)
+echo "The second argument is $2"
+
+# print The number of arguments is (number of parameters)
+echo "The number of arguments is $#"
+
+# previous_args parameter now has the value equal to the number of parameters
+previous_args=$*
+
+# Is this English?
+set niel khail nobo
+
+# print All the positional parameters are (all positions of  the parameters)
+echo "All the positional parameters are $*"
+
+# print The number of positional parameters is (number of the parameters)
+echo "The number of positional parameters is $#"
+
+# print the value of previous_args
+echo $previous_args
+
+#Assign any remaining arguments to the positional parameters.
+set --
+
+# print Current args after -- are :  (all positions of the parameter)
+echo "Current args after -- are :  $*"
+
+#displays the value of previous_args
+set $previous_args
+
+#print all positions of the parameters.
+echo $*
